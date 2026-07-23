@@ -1,1 +1,5 @@
-let gameBoard = new Array();
+const GameBoard = {
+    board: new Array(),
+}
+
+
