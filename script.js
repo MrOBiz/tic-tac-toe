@@ -47,6 +47,18 @@ function Game() {
     }
 
     const checkWin = () => {
+        /*
+            ADD P1 WIN CONDITION 
+            P2 WIN CONDITION
+            DRAW
+
+            WIN CONDITIONS: FOR BOTH SYMBOLS
+            3 ON SAME ROW *3
+            3 ON SAME COLUMN *3
+            3 ON DIAGONAL *2
+            IF BOARD FULL BUT NO CONDITION --> DRAW            
+        */
+        
         pOneCount = 0;
         pTwoCount = 0;
 
@@ -64,28 +76,7 @@ function Game() {
     } 
 
     const printWinner = () => {
-        /* for(let i = 0; i < myBoard.getCellContent().length; i++){
-            if(myBoard.getCellContent()[i] === myBoard.getCellContent()[i + 1] &&
-               myBoard.getCellContent()[i] === myBoard.getCellContent()[i + 2] &&
-                myBoard.getCellContent()[i] != "-"){
-
-                ADD P1 WIN CONDITION 
-                P2 WIN CONDITION
-                DRAW
-
-            }
-        } */
         
-        if(pOneCount === 3){
-            console.log(Players[0].name + " WINS!");
-            resetGame();
-        }else if(pTwoCount === 3){
-            console.log(Players[1].name + " WINS!");
-            resetGame();
-        }else if(pOneCount != 3 && pTwoCount != 3 && turnFlag === 3){
-            console.log("IT'S A DRAW!");
-            resetGame();
-        } 
     }
 
     const resetGame = () => {
