@@ -30,7 +30,8 @@ function Game() {
         }else if(myBoard.getCellContent()[row][col] === "-"){
             myBoard.placeToken(row, col, getActivePToken());
             
-            console.log(myBoard.getCellContent());
+            //console.log(myBoard.getCellContent());
+            myBoard.printCellContent();
             turnFlag += 1;
 
             checkWin();
@@ -135,13 +136,21 @@ function GameBoard(){
         return arr;
     }
 
+    const printCellContent = () => {
+        const rows = getCellContent();
+        for(let i = 0; i < side; i++){
+            console.log(rows[i]);
+        }
+    }
+
     function placeToken(i, j, player){ 
         board[i][j].addToken(player);
     }
 
     createBoard();  //BUILD IN BODY
 
-    return { getBoardSide, getCellContent, placeToken };
+    return { getBoardSide, getCellContent, 
+            printCellContent, placeToken };
 }
 
 function Cell() {
