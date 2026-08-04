@@ -30,7 +30,6 @@ function Game() {
         }else if(myBoard.getCellContent()[row][col] === "-"){
             myBoard.placeToken(row, col, getActivePToken());
             
-            //console.log(myBoard.getCellContent());
             myBoard.printCellContent();
             turnFlag += 1;
 
@@ -101,7 +100,7 @@ function Game() {
     return { getActivePToken, playRound }; 
 }
 
-function GameBoard(){
+function GameBoard() {
     const board = [];
     const side = 3;
 
@@ -117,13 +116,6 @@ function GameBoard(){
                 }
             }
     }
-
-    /* const getCellContent = () => {     1D VERSION
-        let arr = [];
-        for(let elt of board){
-            arr.push(elt.getValue());}
-        return arr;
-    } */
 
     const getCellContent = () => {
         let arr = [];
