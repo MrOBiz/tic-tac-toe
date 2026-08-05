@@ -50,7 +50,7 @@ function Game() {
             WIN CONDITIONS: FOR BOTH SYMBOLS
             3 ON SAME ROW *3   done
             3 ON SAME COLUMN *3 done
-            3 ON DIAGONAL *2
+            3 ON DIAGONAL *2 done
             IF BOARD FULL BUT NO CONDITION --> DRAW            
         */
 
@@ -95,56 +95,49 @@ function Game() {
                         break;
                 }
             }  
-        }
+        }   
 
-        
-        for(let i = 0; i < myBoard.getCellContent()[1].length; i++){
-            let diagOne = []; //3 different arr in this position
-            for(let j = 0; j < myBoard.getCellContent()[1].length; j++){
-                if(i === j){
-                    diagOne.push(myBoard.getCellContent()[i][j]);
-                }
-            } 
+        let diagOne = [myBoard.getCellContent()[0][0], 
+                    myBoard.getCellContent()[1][1],
+                    myBoard.getCellContent()[2][2]];
 
-            
-            let diagTwo = [myBoard.getCellContent()[2][0], 
-                        myBoard.getCellContent()[0][2],
-                        myBoard.getCellContent()[1][1]];
+        let diagTwo = [myBoard.getCellContent()[2][0], 
+                    myBoard.getCellContent()[0][2],
+                    myBoard.getCellContent()[1][1]];
 
-            if(diagOne[0] === diagOne[1] && diagOne[0] === diagOne[1]){
-                switch (diagOne[0]){
-                    case "X":
-                        printWinner(Players[0].name);
-                        resetGame();
-                        break;
-                    
-                    case "O":
-                        printWinner(Players[1].name);
-                        resetGame();
-                        break;
+        if(diagOne[0] === diagOne[1] && 
+            diagOne[1] === diagOne[2]){
+            switch (diagOne[0]){
+                case "X":
+                    printWinner(Players[0].name);
+                    resetGame();
+                    break;
+                
+                case "O":
+                    printWinner(Players[1].name);
+                    resetGame();
+                    break;
 
-                    case "-":
-                        break;
-                }
-            }else if(diagTwo[0] === diagTwo[1] && 
-                     diagTwo[0] === diagTwo[1]){
-                switch (diagTwo[0]){
-                    case "X":
-                        printWinner(Players[0].name);
-                        resetGame();
-                        break;
-                    
-                    case "O":
-                        printWinner(Players[1].name);
-                        resetGame();
-                        break;
+                case "-":
+                    break;
+            }
+        }else if(diagTwo[0] === diagTwo[1] && 
+                    diagTwo[1] === diagTwo[2]){
+            switch (diagTwo[0]){
+                case "X":
+                    printWinner(Players[0].name);
+                    resetGame();
+                    break;
+                
+                case "O":
+                    printWinner(Players[1].name);
+                    resetGame();
+                    break;
 
-                    case "-":
-                        break;
-                }
-            }  
-        }
-
+                case "-":
+                    break;
+            }
+        }  
     } 
 
     const printWinner = (winner) => {
