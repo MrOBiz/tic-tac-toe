@@ -42,18 +42,6 @@ function Game() {
     }
 
     const checkWin = () => {
-        /*
-            ADD P1 WIN CONDITION 
-            P2 WIN CONDITION
-            DRAW
-
-            WIN CONDITIONS: FOR BOTH SYMBOLS
-            3 ON SAME ROW *3   done
-            3 ON SAME COLUMN *3 done
-            3 ON DIAGONAL *2 done
-            IF BOARD FULL BUT NO CONDITION --> DRAW            
-        */
-
         for(let elt of myBoard.getCellContent()){
             if(elt[0] === elt[1] && elt[1] === elt[2]){
                 switch (elt[0]){
