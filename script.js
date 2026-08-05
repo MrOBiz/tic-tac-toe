@@ -49,7 +49,7 @@ function Game() {
 
             WIN CONDITIONS: FOR BOTH SYMBOLS
             3 ON SAME ROW *3   done
-            3 ON SAME COLUMN *3
+            3 ON SAME COLUMN *3 done
             3 ON DIAGONAL *2
             IF BOARD FULL BUT NO CONDITION --> DRAW            
         */
@@ -74,29 +74,28 @@ function Game() {
         }
 
         for(let i = 0; i < myBoard.getCellContent()[1].length; i++){
-            for(let j = 0; j < myBoard.getCellContent()[1].length; j++) 
+            let arr = [];
+            for(let j = 0; j < myBoard.getCellContent()[1].length; j++){
+                arr.push(myBoard.getCellContent()[j][i]);
+            } 
 
-                if(myBoard.getCellContent()[i][j] === 
-                    myBoard.getCellContent()[i][j + 1] && 
-                    myBoard.getCellContent()[i][j + 1] === 
-                    myBoard.getCellContent()[i][j + 2]){
-                    switch (myBoard.getCellContent()[i][j]){
-                        case "X":
-                            printWinner(Players[0].name);
-                            resetGame();
-                            break;
-                        
-                        case "O":
-                            printWinner(Players[1].name);
-                            resetGame();
-                            break;
+            if(arr[0] === arr[1] && arr[0] === arr[1]){
+                switch (arr[0]){
+                    case "X":
+                        printWinner(Players[0].name);
+                        resetGame();
+                        break;
+                    
+                    case "O":
+                        printWinner(Players[1].name);
+                        resetGame();
+                        break;
 
-                        case "-":
-                            break;
-                    }
+                    case "-":
+                        break;
                 }
+            }  
         }
-
 
     } 
 
