@@ -137,7 +137,14 @@ function Game() {
                 case "-":
                     break;
             }
-        }  
+        }
+        
+        /* if(myBoard.getCellContent().some((elt) => 
+            {elt === "-"}) === false ){
+            console.log("IT'S A DRAW!");
+            resetGame();
+            return;
+        } */
     } 
 
     const printWinner = (winner) => {
@@ -235,5 +242,17 @@ game.playRound(0, 2);
 game.playRound(1, 1);
 game.playRound(0, 1);
 game.playRound(2, 2);
+
+/* game.playRound(0, 0);   //DRAW
+game.playRound(0, 1);
+game.playRound(1, 0);
+game.playRound(1, 1);   //DRAW
+game.playRound(2, 1);
+game.playRound(2, 0);
+game.playRound(1, 2);   //DRAW
+game.playRound(2, 2);
+game.playRound(0, 2);
+ */
+
 
 
