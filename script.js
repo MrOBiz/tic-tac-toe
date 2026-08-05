@@ -1,8 +1,6 @@
 function Game() {
     let myBoard = GameBoard();
     let turnFlag = 0;
-    let pOneCount = 0;
-    let pTwoCount = 0;
 
     const Players = [{ name: "P1", token: "X"},
                     { name: "P2",token: "O"}] 
@@ -31,13 +29,10 @@ function Game() {
             myBoard.placeToken(row, col, getActivePToken());
             
             myBoard.printCellContent();
-            turnFlag += 1;
 
             checkWin();
-            if(turnFlag != 3){
-                switchTurn();
-                printActiveP();
-            }
+            switchTurn();
+            printActiveP();
 
         }else{
             console.log("Taken.");
@@ -58,20 +53,21 @@ function Game() {
             3 ON DIAGONAL *2
             IF BOARD FULL BUT NO CONDITION --> DRAW            
         */
-        
-        pOneCount = 0;
-        pTwoCount = 0;
 
         for(let elt of myBoard.getCellContent()){
-            if(elt === "X"){
-                pOneCount += 1;
-            }else if(elt === "O"){
-                pTwoCount += 1;
-            }else{
-                return;
+            if(elt[0] === elt[1] && elt[1] === elt[2]){
+                if(elt[0] === "X"){
+                    console.log(Players[0].name + "WINS!");
+                    resetGame();
+                    return;
+                }else if(elt[0] === "O"){
+                    console.log(Players[1].name + "WINS!");
+                    resetGame();
+                    return;
+                }
             }
         }
-
+        
         printWinner();
     } 
 
@@ -80,15 +76,12 @@ function Game() {
     }
 
     const resetGame = () => {
-        pOneCount = 0;
-        pTwoCount = 0;
-        turnFlag = 0;
         activeP = Players[0];
         myBoard = GameBoard();
     }
     
     printActiveP();
-    return { getActivePToken, playRound }; 
+    return { getActivePToken, playRound, }; 
 }
 
 function GameBoard() {
@@ -150,3 +143,8 @@ const game = Game();
 
 game.playRound(0, 0);
 game.playRound(1, 1);
+game.playRound(0, 1);
+game.playRound(2, 2);
+game.playRound(0, 2);
+game.playRound(1, 2);
+
