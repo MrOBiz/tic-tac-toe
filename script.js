@@ -1,3 +1,7 @@
+function Screen() {
+    
+}
+
 function Game() {
     let myBoard = GameBoard();
     let turnFlag = 0;
@@ -240,7 +244,3 @@ game.playRound(2, 0);
 game.playRound(1, 2);   //DRAW
 game.playRound(2, 2);
 game.playRound(0, 2);
- 
-
-
-
