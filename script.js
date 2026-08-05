@@ -97,6 +97,52 @@ function Game() {
             }  
         }
 
+        let diagTwo = [myBoard.getCellContent()[2][0], 
+                        myBoard.getCellContent()[0][2],
+                        myBoard.getCellContent()[1][1]];
+        for(let i = 0; i < myBoard.getCellContent()[1].length; i++){
+            let diagOne = [];
+            for(let j = 0; j < myBoard.getCellContent()[1].length; j++){
+                if(i === j){
+                    diagOne.push(myBoard.getCellContent()[i][j]);
+                }
+            } 
+
+            if(diagOne[0] === diagOne[1] && diagOne[0] === diagOne[1]){
+                switch (diagOne[0]){
+                    case "X":
+                        printWinner(Players[0].name);
+                        resetGame();
+                        break;
+                    
+                    case "O":
+                        printWinner(Players[1].name);
+                        resetGame();
+                        break;
+
+                    case "-":
+                        break;
+                }
+            } 
+            
+            if(diagTwo[0] === diagTwo[1] && diagTwo[0] === diagTwo[1]){
+                switch (diagTwo[0]){
+                    case "X":
+                        printWinner(Players[0].name);
+                        resetGame();
+                        break;
+                    
+                    case "O":
+                        printWinner(Players[1].name);
+                        resetGame();
+                        break;
+
+                    case "-":
+                        break;
+                }
+            }  
+        }
+
     } 
 
     const printWinner = (winner) => {
@@ -169,7 +215,7 @@ function Cell() {
 
 const game = Game();
 
-game.playRound(0, 0);
+game.playRound(0, 0);  //ROW WIN CON
 game.playRound(1, 1);
 game.playRound(0, 1);
 game.playRound(2, 2);
@@ -177,11 +223,22 @@ game.playRound(0, 2);
 
 //GAME DOESN'T STOP AFTER SOMEONE WINS
 
-game.playRound(1, 2);
+game.playRound(1, 2);  //COL WIN CON
 game.playRound(0, 1);
 game.playRound(2, 2);
 game.playRound(1, 0);
 game.playRound(0, 2);
-game.playRound(2, 0);
+
+game.playRound(2, 0);   //DIAGTWO CON
+game.playRound(0, 0);
+game.playRound(1, 1);
+game.playRound(0, 1);
+game.playRound(0, 2);
+
+game.playRound(0, 0);   //DIAGONE CON
+game.playRound(0, 2);
+game.playRound(1, 1);
+game.playRound(0, 1);
+game.playRound(2, 2);
 
 
