@@ -2,8 +2,8 @@ function Game() {
     let myBoard = GameBoard();
     let turnFlag = 0;
 
-    const Players = [{ name: "P1", token: "X"},
-                    { name: "P2",token: "O"}] 
+    const Players = [{ name: "Bob", token: "X"},
+                    { name: "Jane",token: "O"}] 
 
     let activeP = Players[0]; 
     
@@ -48,7 +48,7 @@ function Game() {
             DRAW
 
             WIN CONDITIONS: FOR BOTH SYMBOLS
-            3 ON SAME ROW *3
+            3 ON SAME ROW *3   done
             3 ON SAME COLUMN *3
             3 ON DIAGONAL *2
             IF BOARD FULL BUT NO CONDITION --> DRAW            
@@ -56,23 +56,26 @@ function Game() {
 
         for(let elt of myBoard.getCellContent()){
             if(elt[0] === elt[1] && elt[1] === elt[2]){
-                if(elt[0] === "X"){
-                    console.log(Players[0].name + "WINS!");
-                    resetGame();
-                    return;
-                }else if(elt[0] === "O"){
-                    console.log(Players[1].name + "WINS!");
-                    resetGame();
-                    return;
+                switch (elt[0]){
+                    case "X":
+                        printWinner(Players[0].name);
+                        resetGame();
+                        break;
+                    
+                    case "O":
+                        printWinner(Players[1].name);
+                        resetGame();
+                        break;
+
+                    case "-":
+                        break;
                 }
             }
         }
-        
-        printWinner();
     } 
 
-    const printWinner = () => {
-        
+    const printWinner = (winner) => {
+        console.log(winner + " WINS!");
     }
 
     const resetGame = () => {
