@@ -97,16 +97,19 @@ function Game() {
             }  
         }
 
-        let diagTwo = [myBoard.getCellContent()[2][0], 
-                        myBoard.getCellContent()[0][2],
-                        myBoard.getCellContent()[1][1]];
+        
         for(let i = 0; i < myBoard.getCellContent()[1].length; i++){
-            let diagOne = [];
+            let diagOne = []; //3 different arr in this position
             for(let j = 0; j < myBoard.getCellContent()[1].length; j++){
                 if(i === j){
                     diagOne.push(myBoard.getCellContent()[i][j]);
                 }
             } 
+
+            
+            let diagTwo = [myBoard.getCellContent()[2][0], 
+                        myBoard.getCellContent()[0][2],
+                        myBoard.getCellContent()[1][1]];
 
             if(diagOne[0] === diagOne[1] && diagOne[0] === diagOne[1]){
                 switch (diagOne[0]){
@@ -123,9 +126,8 @@ function Game() {
                     case "-":
                         break;
                 }
-            } 
-            
-            if(diagTwo[0] === diagTwo[1] && diagTwo[0] === diagTwo[1]){
+            }else if(diagTwo[0] === diagTwo[1] && 
+                     diagTwo[0] === diagTwo[1]){
                 switch (diagTwo[0]){
                     case "X":
                         printWinner(Players[0].name);
