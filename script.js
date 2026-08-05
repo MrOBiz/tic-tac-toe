@@ -79,7 +79,7 @@ function Game() {
                 arr.push(myBoard.getCellContent()[j][i]);
             } 
 
-            if(arr[0] === arr[1] && arr[0] === arr[1]){
+            if(arr[0] === arr[1] && arr[1] === arr[2]){
                 switch (arr[0]){
                     case "X":
                         printWinner(Players[0].name);
@@ -139,12 +139,12 @@ function Game() {
             }
         }
         
-        /* if(myBoard.getCellContent().some((elt) => 
-            {elt === "-"}) === false ){
+        if(!myBoard.getCellContent().some(row =>
+            row.some((elt) => elt === "-")) ){
             console.log("IT'S A DRAW!");
             resetGame();
             return;
-        } */
+        } 
     } 
 
     const printWinner = (winner) => {
@@ -243,7 +243,7 @@ game.playRound(1, 1);
 game.playRound(0, 1);
 game.playRound(2, 2);
 
-/* game.playRound(0, 0);   //DRAW
+game.playRound(0, 0);   //DRAW
 game.playRound(0, 1);
 game.playRound(1, 0);
 game.playRound(1, 1);   //DRAW
@@ -252,7 +252,7 @@ game.playRound(2, 0);
 game.playRound(1, 2);   //DRAW
 game.playRound(2, 2);
 game.playRound(0, 2);
- */
+ 
 
 
 
