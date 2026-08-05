@@ -72,6 +72,32 @@ function Game() {
                 }
             }
         }
+
+        for(let i = 0; i < myBoard.getCellContent()[1].length; i++){
+            for(let j = 0; j < myBoard.getCellContent()[1].length; j++) 
+
+                if(myBoard.getCellContent()[i][j] === 
+                    myBoard.getCellContent()[i][j + 1] && 
+                    myBoard.getCellContent()[i][j + 1] === 
+                    myBoard.getCellContent()[i][j + 2]){
+                    switch (myBoard.getCellContent()[i][j]){
+                        case "X":
+                            printWinner(Players[0].name);
+                            resetGame();
+                            break;
+                        
+                        case "O":
+                            printWinner(Players[1].name);
+                            resetGame();
+                            break;
+
+                        case "-":
+                            break;
+                    }
+                }
+        }
+
+
     } 
 
     const printWinner = (winner) => {
@@ -149,5 +175,14 @@ game.playRound(1, 1);
 game.playRound(0, 1);
 game.playRound(2, 2);
 game.playRound(0, 2);
+
+//GAME DOESN'T STOP AFTER SOMEONE WINS
+
 game.playRound(1, 2);
+game.playRound(0, 1);
+game.playRound(2, 2);
+game.playRound(1, 0);
+game.playRound(0, 2);
+game.playRound(2, 0);
+
 
