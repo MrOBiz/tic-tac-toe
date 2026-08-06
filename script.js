@@ -1,5 +1,13 @@
 function Screen() {
-    
+    const body = document.querySelector("body");
+    const square = document.createElement("div");
+
+    square.style.backgroundColor = "grey";
+    square.style.width = "50px";
+    square.style.height = "50px";
+
+    body.appendChild(square);
+
 }
 
 function Game() {
@@ -206,7 +214,7 @@ function Cell() {
     return {addToken, getValue};
 }
 
-
+const screen = Screen();
 const game = Game();
 
 game.playRound(0, 0);  //ROW WIN CON
