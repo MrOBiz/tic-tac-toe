@@ -5,7 +5,7 @@ function Screen() {
     square.style.backgroundColor = "grey";
     square.style.width = "50px";
     square.style.height = "50px";
-    
+    square.style.padding = "10px";
 
     body.appendChild(square);
 
