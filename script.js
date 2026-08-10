@@ -1,12 +1,15 @@
 function Screen() {
     const body = document.querySelector("body");
-    const square = document.createElement("div");
 
-    square.style.backgroundColor = "grey";
-    square.style.width = "50px";
-    square.style.height = "50px";
+    for(let i = 0; i < 9; i++){
+        const square = document.createElement("div");
+        square.style.backgroundColor = "grey";
+        square.style.width = "50px";
+        square.style.height = "50px";
+        square.style.margin = "10px";
 
-    body.appendChild(square);
+        body.appendChild(square);
+    }
 
 }
 
