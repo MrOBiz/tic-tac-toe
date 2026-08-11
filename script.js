@@ -4,8 +4,8 @@ function Screen() {
     for(let i = 0; i < 9; i++){
         const square = document.createElement("div");
         square.style.backgroundColor = "grey";
-        square.style.width = "50px";
-        square.style.height = "50px";
+        square.style.width = "80px";
+        square.style.height = "80px";
         square.style.margin = "10px";
 
         body.appendChild(square);
