@@ -7,6 +7,7 @@ function Screen() {
         square.style.width = "80px";
         square.style.height = "80px";
         square.style.margin = "10px";
+        square.style.border = "4px";
 
         body.appendChild(square);
     }
