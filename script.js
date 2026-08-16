@@ -1,17 +1,29 @@
-function Screen() {
+function Screen(game) {
     const body = document.querySelector("body");
+    const squares = [];
 
-    for(let i = 0; i < 9; i++){
-        const square = document.createElement("div");
-        square.style.backgroundColor = "grey";
-        square.style.width = "80px";
-        square.style.height = "80px";
-        square.style.margin = "10px";
-        square.style.border = "thick solid #0000FF"
+    const createBoard = () => {
+        const boardEl = document.createElement("div");
 
-        body.appendChild(square);
-    }
+        for(let row = 0; row < 3; row++){
+            squares[row] = new Array();
+            for(let col = 0; col < 3; col ++){
+                const square = document.createElement("div");
+                
+                square.style.backgroundColor = "grey";
+                square.style.height = "100px";
+                square.style.width = "100px";
+                square.style.margin = "10px";
 
+                square.dataset.row = row;
+                square.dataset.col = col;
+                squares[row][col] = square;
+                boardEl.appendChild(square);
+            }
+        }
+        body.appendChild(boardEl);
+    };
+    createBoard();
 }
 
 function Game() {
@@ -161,7 +173,7 @@ function Game() {
     }
     
     printActiveP();
-    return { getActivePToken, playRound, }; 
+    return { getActivePToken, playRound }; 
 }
 
 function GameBoard() {
@@ -218,10 +230,11 @@ function Cell() {
     return {addToken, getValue};
 }
 
-const screen = Screen();
 const game = Game();
+const screen = Screen(game);
 
-game.playRound(0, 0);  //ROW WIN CON
+
+/* game.playRound(0, 0);  //ROW WIN CON
 game.playRound(1, 1);
 game.playRound(0, 1);
 game.playRound(2, 2);
@@ -255,4 +268,4 @@ game.playRound(2, 1);
 game.playRound(2, 0);
 game.playRound(1, 2);   //DRAW
 game.playRound(2, 2);
-game.playRound(0, 2);
+game.playRound(0, 2); */
