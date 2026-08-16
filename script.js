@@ -24,12 +24,27 @@ function Screen(game) {
                     const row = Number(square.dataset.row);
                     const col = Number(square.dataset.col);
                     game.playRound(row, col);
+                    render();
                 });
             }
         }
         body.appendChild(boardEl);
     };
+
     createBoard();
+
+    const render = () => {
+        const cells = game.getCellContent();
+        for(let row = 0; row < 3; row++){
+            for(let col = 0; col < 3; col++){
+                const token = cells[row][col];
+                squares[row][col].textContent = token === "-" ?
+                                                "" : token;
+            }
+        }
+    };
+
+    render();
 }
 
 function Game() {
@@ -169,6 +184,10 @@ function Game() {
         } 
     } 
 
+    const getCellContent = () => {
+        return myBoard.getCellContent();
+    };
+
     const printWinner = (winner) => {
         console.log(winner + " WINS!");
     }
@@ -179,7 +198,7 @@ function Game() {
     }
     
     printActiveP();
-    return { getActivePToken, playRound }; 
+    return { getActivePToken, playRound, printActiveP, getCellContent }; 
 }
 
 function GameBoard() {
