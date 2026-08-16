@@ -4,6 +4,7 @@ function Screen(game) {
 
     const createBoard = () => {
         const boardEl = document.createElement("div");
+        boardEl.classList.add("board");
 
         for(let row = 0; row < 3; row++){
             squares[row] = new Array();
@@ -13,7 +14,6 @@ function Screen(game) {
                 square.style.backgroundColor = "grey";
                 square.style.height = "100px";
                 square.style.width = "100px";
-                square.style.margin = "10px";
 
                 square.dataset.row = row;
                 square.dataset.col = col;
