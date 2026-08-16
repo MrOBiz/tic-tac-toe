@@ -19,6 +19,12 @@ function Screen(game) {
                 square.dataset.col = col;
                 squares[row][col] = square;
                 boardEl.appendChild(square);
+
+                square.addEventListener("click", () => {
+                    const row = Number(square.dataset.row);
+                    const col = Number(square.dataset.col);
+                    game.playRound(row, col);
+                });
             }
         }
         body.appendChild(boardEl);
