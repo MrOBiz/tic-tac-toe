@@ -49,7 +49,7 @@ function Screen(game) {
 
 function Game() {
     let myBoard = GameBoard();
-    let turnFlag = 0;
+    let overFlag = 0;
 
     const Players = [{ name: "Bob", token: "X"},
                     { name: "Jane",token: "O"}] 
@@ -70,11 +70,13 @@ function Game() {
 
     const playRound = (row, col) => {
         if(row < 0 || row > myBoard.getBoardSide() - 1 ||
-            col < 0 || col > myBoard.getBoardSide() - 1){
+            col < 0 || col > myBoard.getBoardSide() - 1 &&
+            overFlag === 0){
             console.log("Invalid move.");
             printActiveP();
             return;
-        }else if(myBoard.getCellContent()[row][col] === "-"){
+        }else if(myBoard.getCellContent()[row][col] === "-" && 
+                    overFlag === 0){
             myBoard.placeToken(row, col, getActivePToken());
             
             myBoard.printCellContent();
@@ -83,6 +85,8 @@ function Game() {
             switchTurn();
             printActiveP();
 
+        }else if(overFlag === 1){
+            return;
         }else{
             console.log("Taken.");
             console.log("Still " + activeP.name + "'s turn.");
@@ -96,12 +100,12 @@ function Game() {
                 switch (elt[0]){
                     case "X":
                         printWinner(Players[0].name);
-                        resetGame();
+                        overFlag = 1;
                         break;
                     
                     case "O":
                         printWinner(Players[1].name);
-                        resetGame();
+                        overFlag = 1;
                         break;
 
                     case "-":
@@ -120,12 +124,12 @@ function Game() {
                 switch (arr[0]){
                     case "X":
                         printWinner(Players[0].name);
-                        resetGame();
+                        overFlag = 1;
                         break;
                     
                     case "O":
                         printWinner(Players[1].name);
-                        resetGame();
+                        overFlag = 1;
                         break;
 
                     case "-":
@@ -147,12 +151,12 @@ function Game() {
             switch (diagOne[0]){
                 case "X":
                     printWinner(Players[0].name);
-                    resetGame();
+                    overFlag = 1;
                     break;
                 
                 case "O":
                     printWinner(Players[1].name);
-                    resetGame();
+                    overFlag = 1;
                     break;
 
                 case "-":
@@ -163,12 +167,12 @@ function Game() {
             switch (diagTwo[0]){
                 case "X":
                     printWinner(Players[0].name);
-                    resetGame();
+                    overFlag = 1;
                     break;
                 
                 case "O":
                     printWinner(Players[1].name);
-                    resetGame();
+                    overFlag = 1;
                     break;
 
                 case "-":
@@ -179,7 +183,7 @@ function Game() {
         if(!myBoard.getCellContent().some(row =>
             row.some((elt) => elt === "-")) ){
             console.log("IT'S A DRAW!");
-            resetGame();
+            overFlag = 1;
             return;
         } 
     } 
@@ -195,6 +199,7 @@ function Game() {
     const resetGame = () => {
         activeP = Players[0];
         myBoard = GameBoard();
+        overFlag = 0;
     }
     
     printActiveP();
