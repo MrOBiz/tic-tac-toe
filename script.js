@@ -13,6 +13,7 @@ function Screen(game) {
     start.addEventListener("click", () => {
         game.resetGame();
         renderBoard();
+        renderNames();
     });
 
     body.appendChild(start);
@@ -70,6 +71,25 @@ function Screen(game) {
         }
     }
 
+    const renderWinner = () => {
+        switch (game.getFlag()){
+            case "1":
+                display.textContent = playerOne + " WINS! ";
+                break;
+
+            case "2":
+                display.textContent = playerTwo + " WINS! ";
+                break;
+
+            case "3":
+                display.textContent = " IT'S A DRAW! ";
+                break;
+            
+            default:
+                break;
+        }
+    }
+
     renderNames();
 }
 
@@ -110,7 +130,7 @@ function Game() {
                 switchTurn();
                 printActiveP();
             }
-        }else if(overFlag === 1){
+        }else if(overFlag != 0){
             return;
         }else{
             console.log("Taken.");
@@ -130,7 +150,7 @@ function Game() {
                     
                     case "O":
                         printWinner(Players[1].name);
-                        overFlag = 1;
+                        overFlag = 2;
                         break;
 
                     case "-":
@@ -154,7 +174,7 @@ function Game() {
                     
                     case "O":
                         printWinner(Players[1].name);
-                        overFlag = 1;
+                        overFlag = 2;
                         break;
 
                     case "-":
@@ -181,7 +201,7 @@ function Game() {
                 
                 case "O":
                     printWinner(Players[1].name);
-                    overFlag = 1;
+                    overFlag = 2;
                     break;
 
                 case "-":
@@ -197,7 +217,7 @@ function Game() {
                 
                 case "O":
                     printWinner(Players[1].name);
-                    overFlag = 1;
+                    overFlag = 2;
                     break;
 
                 case "-":
@@ -208,7 +228,7 @@ function Game() {
         if(!myBoard.getCellContent().some(row =>
             row.some((elt) => elt === "-")) ){
             console.log("IT'S A DRAW!");
-            overFlag = 1;
+            overFlag = 3;
             return;
         } 
     } 
@@ -216,6 +236,10 @@ function Game() {
     const getCellContent = () => {
         return myBoard.getCellContent();
     };
+
+    const getFlag = () => {
+        return overFlag;
+    }
 
     const printWinner = (winner) => {
         console.log(winner + " WINS!");
@@ -228,8 +252,7 @@ function Game() {
     }
     
     printActiveP();
-    return { getActivePToken, playRound, printActiveP,
-             getCellContent, resetGame }; 
+    return { playRound, getFlag, getCellContent, resetGame }; 
 }
 
 function GameBoard() {

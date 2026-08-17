@@ -16,8 +16,15 @@ body {
 
 .display {
     background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: whitesmoke;
+    
     height: 100px;
     width: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 
 .board {
