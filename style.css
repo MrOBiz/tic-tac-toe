@@ -13,6 +13,12 @@ body {
     margin: 0;
 }
 
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(2, 30px);
+}
+
 .board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -35,7 +41,7 @@ button {
     background-color: rgb(117, 9, 9);
 }
 
-input {
+input, label {
     color: brown;
     font-weight: 200;
     font-size: 3 rem;
