@@ -1,10 +1,12 @@
 * {
     font-size: 1rem;
     color: bisque;
+    font-weight: 700;
 }
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -26,8 +28,9 @@ body {
     cursor: pointer;
 }
 
-button{
+button {
     height: 50px;
     width: 100px;
+    margin: 10px;
     background-color: rgb(117, 9, 9);
 }

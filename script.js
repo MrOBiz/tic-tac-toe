@@ -51,6 +51,7 @@ function Screen(game) {
 
     start.addEventListener("click", () => {
         game.resetGame();
+        render();
     });
 
     body.appendChild(start);
@@ -212,7 +213,8 @@ function Game() {
     }
     
     printActiveP();
-    return { getActivePToken, playRound, printActiveP, getCellContent, resetGame }; 
+    return { getActivePToken, playRound, printActiveP,
+             getCellContent, resetGame }; 
 }
 
 function GameBoard() {
