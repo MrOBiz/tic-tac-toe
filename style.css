@@ -34,3 +34,9 @@ button {
     margin: 10px;
     background-color: rgb(117, 9, 9);
 }
+
+input {
+    color: brown;
+    font-weight: 200;
+    font-size: 3 rem;
+}

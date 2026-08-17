@@ -46,6 +46,19 @@ function Screen(game) {
 
     render();
 
+    const playerNameOne = document.createElement("input");
+    const pNOLabel = document.createElement("label");
+    pNOLabel.textContent = "First player name: ";
+
+    const playerNameTwo = document.createElement("input");
+    const pNTLabel = document.createElement("label");
+    pNTLabel.textContent = "Second player name: ";
+
+    body.appendChild(playerNameOne);
+    body.appendChild(pNOLabel);
+    body.appendChild(playerNameTwo);
+    body.appendChild(pNTLabel);
+
     const start = document.createElement("button");
     start.textContent = "Restart Game";
 
