@@ -4,16 +4,24 @@ function Screen(game) {
 
     const header = document.createElement("div");
     header.classList.add("header");
+
+    const display = document.createElement("output");
+    display.classList.add("display");
+
+    body.appendChild(display);
     body.appendChild(header);
 
     const playerNameOne = document.createElement("input");
     const pNOLabel = document.createElement("label");
     pNOLabel.textContent = "First player name: ";
+    const playerOne = playerNameOne.value;
 
     const playerNameTwo = document.createElement("input");
     const pNTLabel = document.createElement("label");
     pNTLabel.textContent = "Second player name: ";
+    const playerTwo = playerNameTwo.value;
 
+    
     header.appendChild(pNOLabel);
     header.appendChild(playerNameOne);
     header.appendChild(pNTLabel);

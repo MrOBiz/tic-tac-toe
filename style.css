@@ -2,6 +2,7 @@
     font-size: 1rem;
     color: bisque;
     font-weight: 700;
+    border-radius: 30px;
 }
 
 body {
@@ -14,9 +15,16 @@ body {
 }
 
 .header {
+    margin: 30px;
     display: grid;
     grid-template-columns: repeat(2, 200px);
-    grid-template-rows: repeat(2, 30px);
+    grid-template-rows: repeat(3, 30px);
+}
+
+.display {
+    background-color: black;
+    height: 100px;
+    width: 500px;
 }
 
 .board {
