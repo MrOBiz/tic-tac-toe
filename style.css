@@ -25,3 +25,9 @@ body {
     font-size: 3rem;
     cursor: pointer;
 }
+
+button{
+    height: 50px;
+    width: 100px;
+    background-color: rgb(117, 9, 9);
+}

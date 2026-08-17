@@ -45,6 +45,16 @@ function Screen(game) {
     };
 
     render();
+
+    const start = document.createElement("button");
+    start.textContent = "Restart Game";
+
+    start.addEventListener("click", () => {
+        game.resetGame();
+    });
+
+    body.appendChild(start);
+    
 }
 
 function Game() {
@@ -70,21 +80,20 @@ function Game() {
 
     const playRound = (row, col) => {
         if(row < 0 || row > myBoard.getBoardSide() - 1 ||
-            col < 0 || col > myBoard.getBoardSide() - 1 &&
-            overFlag === 0){
+            col < 0 || col > myBoard.getBoardSide() - 1){
             console.log("Invalid move.");
             printActiveP();
             return;
-        }else if(myBoard.getCellContent()[row][col] === "-" && 
-                    overFlag === 0){
+        }else if(myBoard.getCellContent()[row][col] === "-"){
             myBoard.placeToken(row, col, getActivePToken());
             
             myBoard.printCellContent();
 
             checkWin();
-            switchTurn();
-            printActiveP();
-
+            if(overFlag === 0){
+                switchTurn();
+                printActiveP();
+            }
         }else if(overFlag === 1){
             return;
         }else{
@@ -203,7 +212,7 @@ function Game() {
     }
     
     printActiveP();
-    return { getActivePToken, playRound, printActiveP, getCellContent }; 
+    return { getActivePToken, playRound, printActiveP, getCellContent, resetGame }; 
 }
 
 function GameBoard() {
