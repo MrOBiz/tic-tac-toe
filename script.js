@@ -2,31 +2,20 @@ function Screen(game) {
     const body = document.querySelector("body");
     const squares = [];
 
-    const header = document.createElement("div");
-    header.classList.add("header");
-
     const display = document.createElement("output");
     display.classList.add("display");
 
     body.appendChild(display);
-    body.appendChild(header);
 
-    const playerNameOne = document.createElement("input");
-    const pNOLabel = document.createElement("label");
-    pNOLabel.textContent = "First player name: ";
-    const playerOne = playerNameOne.value;
+    const start = document.createElement("button");
+    start.textContent = "Restart Game";
 
-    const playerNameTwo = document.createElement("input");
-    const pNTLabel = document.createElement("label");
-    pNTLabel.textContent = "Second player name: ";
-    const playerTwo = playerNameTwo.value;
+    start.addEventListener("click", () => {
+        game.resetGame();
+        renderBoard();
+    });
 
-    
-    header.appendChild(pNOLabel);
-    header.appendChild(playerNameOne);
-    header.appendChild(pNTLabel);
-    header.appendChild(playerNameTwo);
-    
+    body.appendChild(start);
 
     const createBoard = () => {
         const boardEl = document.createElement("div");
@@ -50,7 +39,7 @@ function Screen(game) {
                     const row = Number(square.dataset.row);
                     const col = Number(square.dataset.col);
                     game.playRound(row, col);
-                    render();
+                    renderBoard();
                 });
             }
         }
@@ -59,7 +48,7 @@ function Screen(game) {
 
     createBoard();
 
-    const render = () => {
+    const renderBoard = () => {
         const cells = game.getCellContent();
         for(let row = 0; row < 3; row++){
             for(let col = 0; col < 3; col++){
@@ -70,18 +59,18 @@ function Screen(game) {
         }
     };
 
-    render();
+    renderBoard();
 
-    const start = document.createElement("button");
-    start.textContent = "Restart Game";
+    const renderNames = () => {
+        let playerOne = prompt("Enter first player name: ", "Bob");
+        let playerTwo = prompt("Enter second player name: ", "Mary");
+        if(playerOne != null && playerTwo != null){
+            display.textContent = playerOne + " and " +
+                                 playerTwo + " playing."; 
+        }
+    }
 
-    start.addEventListener("click", () => {
-        game.resetGame();
-        render();
-    });
-
-    body.appendChild(start);
-    
+    renderNames();
 }
 
 function Game() {
