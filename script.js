@@ -1,6 +1,8 @@
 function Screen(game) {
     const body = document.querySelector("body");
     const squares = [];
+    let playerOne;
+    let playerTwo;
 
     const display = document.createElement("output");
     display.classList.add("display");
@@ -36,18 +38,14 @@ function Screen(game) {
                 squares[row][col] = square;
                 boardEl.appendChild(square);
 
-                if(game.getFlag() === 0){
-                    square.addEventListener("click", () => {
-                        const row = Number(square.dataset.row);
-                        const col = Number(square.dataset.col);
-                        game.playRound(row, col);
-                        renderBoard();
-                        alert(game.getFlag());
-                    });
-                }else{
+                
+                square.addEventListener("click", () => {
+                    const row = Number(square.dataset.row);
+                    const col = Number(square.dataset.col);
+                    game.playRound(row, col);
+                    renderBoard();
                     renderWinner(game.getFlag());
-                    alert(game.getFlag());
-                }
+                });
             }
         }
         body.appendChild(boardEl);
@@ -69,8 +67,8 @@ function Screen(game) {
     renderBoard();
 
     const renderNames = () => {
-        let playerOne = prompt("Enter first player name: ", "Bob");
-        let playerTwo = prompt("Enter second player name: ", "Mary");
+        playerOne = prompt("Enter first player name: ", "Bob");
+        playerTwo = prompt("Enter second player name: ", "Mary");
         if(playerOne != null && playerTwo != null){
             display.textContent = playerOne + "(X) and " +
                                  playerTwo + "(O) playing."; 
