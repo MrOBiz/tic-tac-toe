@@ -36,12 +36,18 @@ function Screen(game) {
                 squares[row][col] = square;
                 boardEl.appendChild(square);
 
-                square.addEventListener("click", () => {
-                    const row = Number(square.dataset.row);
-                    const col = Number(square.dataset.col);
-                    game.playRound(row, col);
-                    renderBoard();
-                });
+                if(game.getFlag() === 0){
+                    square.addEventListener("click", () => {
+                        const row = Number(square.dataset.row);
+                        const col = Number(square.dataset.col);
+                        game.playRound(row, col);
+                        renderBoard();
+                        alert(game.getFlag());
+                    });
+                }else{
+                    renderWinner(game.getFlag());
+                    alert(game.getFlag());
+                }
             }
         }
         body.appendChild(boardEl);
@@ -66,28 +72,33 @@ function Screen(game) {
         let playerOne = prompt("Enter first player name: ", "Bob");
         let playerTwo = prompt("Enter second player name: ", "Mary");
         if(playerOne != null && playerTwo != null){
-            display.textContent = playerOne + " and " +
-                                 playerTwo + " playing."; 
+            display.textContent = playerOne + "(X) and " +
+                                 playerTwo + "(O) playing."; 
         }
     }
 
-    const renderWinner = () => {
-        switch (game.getFlag()){
-            case "1":
+    const renderWinner = (flag) => {
+        switch (flag){
+            case 1:
                 display.textContent = playerOne + " WINS! ";
                 break;
 
-            case "2":
+            case 2:
                 display.textContent = playerTwo + " WINS! ";
                 break;
 
-            case "3":
+            case 3:
                 display.textContent = " IT'S A DRAW! ";
                 break;
-            
-            default:
-                break;
-        }
+        } 
+
+        /* if(flag === 1){
+            display.textContent = playerOne + " WINS! ";
+        }else if(flag === 2){
+            display.textContent = playerTwo + " WINS! ";
+        }else if(flag === 3){
+            display.textContent = " IT'S A DRAW! ";
+        } */
     }
 
     renderNames();
